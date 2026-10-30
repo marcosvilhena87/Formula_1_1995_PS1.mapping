@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "game": "Formula 1 1995 (PlayStation 1)",
+  "experiment": "EXP003",
+  "date": "2026-10-30",
+  "status": "experimental",
+  "sources": [
+    {
+      "file": "F1_1995_exp003_samples(1).csv",
+      "rows": 306
+    },
+    {
+      "file": "F1_1995_exp003_events(1).csv",
+      "rows": 136
+    }
+  ],
+  "mapping": {
+    "name": "per_slot_lap_candidate",
+    "memory_domain": "not_confirmed_in_exp003_files",
+    "base_address_hex": "0x0E18C0",
+    "stride_hex": "0x9C",
+    "stride_decimal": 156,
+    "slot_min": 0,
+    "slot_max": 25,
+    "slot_count": 26,
+    "field_offset_hex": "0x0",
+    "field_type": "unconfirmed",
+    "examples": {
+      "0": "0x0E18C0",
+      "1": "0x0E195C",
+      "25": "0x0E27FC"
+    },
+    "address_formula": "base_address + slot_index * stride",
+    "event_address_matches": 136,
+    "event_address_total": 136,
+    "interpretation": "possible per-car lap counter",
+    "confidence": "candidate; lap semantics unconfirmed independently"
+  },
+  "player_selection_observed": {
+    "slot_raw_counts": {
+      "0": 7,
+      "25": 271,
+      "4294967295": 28
+    },
+    "invalid_sentinel_uint32_hex": "0xFFFFFFFF",
+    "candidate_equal_slot25_samples": 271,
+    "slot25_samples": 271,
+    "slot25_events": [
+      {
+        "frame": 153768,
+        "old": 0,
+        "new": 1,
+        "player_slot_valid": false
+      },
+      {
+        "frame": 154147,
+        "old": 1,
+        "new": 0,
+        "player_slot_valid": true
+      },
+      {
+        "frame": 154635,
+        "old": 0,
+        "new": 1,
+        "player_slot_valid": true
+      },
+      {
+        "frame": 159679,
+        "old": 1,
+        "new": 2,
+        "player_slot_valid": true
+      },
+      {
+        "frame": 164539,
+        "old": 2,
+        "new": 3,
+        "player_slot_valid": true
+      },
+      {
+        "frame": 169493,
+        "old": 3,
+        "new": 4,
+        "player_slot_valid": true
+      }
+    ]
+  },
+  "observations": [
+    "All 26 slots recorded 1-to-2 and 2-to-3 transitions after reset",
+    "Only slot 25 reached 3-to-4 within observed interval",
+    "Pre-race reset and large transient values indicate state-dependent initialization"
+  ],
+  "limitations": [
+    "No independently observed finish line crossing",
+    "No independent validation of player identity",
+    "No confirmed field width or emulator memory domain",
+    "No game build or region compatibility verified"
+  ]
+}
